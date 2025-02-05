@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be Mine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, pink, white);
+            color: red;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: auto;
+        }
+        h1 {
+            font-size: 3em;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .yes {
+            background-color: red;
+            color: white;
+        }
+        .no {
+            background-color: white;
+            color: red;
+            position: absolute;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
+        }
+        .heart {
+            position: absolute;
+            bottom: 0;
+            font-size: 2em;
+            color: red;
+            animation: float 5s infinite ease-in-out;
+        }
+        #love-list {
+            display: none;
+            font-size: 1.5em;
+            margin-top: 20px;
+            text-align: left;
+        }
+        #love-image {
+            display: none;
+            margin-top: 20px;
+            max-width: 80%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be Mine? ❤️</h1>
+    <div class="buttons">
+        <button class="yes" onclick="showMessage()">Yes</button>
+        <button class="no" onmouseover="moveButton(this)">No</button>
+    </div>
+    <p id="message" style="display:none; font-size: 1.5em; margin-top: 20px;">Yay! You made my day! ❤️</p>
+    <p id="love-letter" style="display:none; font-size: 1.5em; margin-top: 20px;">You make me so happy, and I hope we can share a special Valentine’s Day together! ❤️</p>
+    <h2 id="love-title" style="display:none;">10 Things I Love About You</h2>
+    <ul id="love-list">
+        <li>Her cooking</li>
+        <li>How sweet she can be</li>
+        <li>How she can make me laugh and her cute laugh</li>
+        <li>Her kisses</li>
+        <li>Her hugs</li>
+        <li>Her cuddles</li>
+        <li>Her generosity</li>
+        <li>Her cute smile</li>
+        <li>How good of a mom she is!</li>
+        <li>How she brightens my days</li>
+    </ul>
+    <img id="love-image" src="https://i.postimg.cc/kGkBV6FP/29340173-1062519753932665-9032319474778243072-n.jpg" alt="A special memory together">
+    <p id="countdown" style="font-size: 1.5em; margin-top: 20px;"></p>
+    <div class="heart">❤️</div>
+    <div class="heart" style="left: 50px;">❤️</div>
+
+    <script>
+        function showMessage() {
+            document.getElementById("message").style.display = "block";
+            document.getElementById("love-letter").style.display = "block";
+            document.getElementById("love-title").style.display = "block";
+            document.getElementById("love-list").style.display = "block";
+            document.getElementById("love-image").style.display = "block";
+        }
+
+        function moveButton(button) {
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 100);
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+
+        function countdown() {
+            let valentine = new Date("Feb 14, 2025 00:00:00").getTime();
+            let timer = setInterval(function() {
+                let now = new Date().getTime();
+                let timeLeft = valentine - now;
+                let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                document.getElementById("countdown").innerHTML = `Only ${days} days until Valentine's Day! ❤️`;
+                if (timeLeft < 0) {
+                    clearInterval(timer);
+                    document.getElementById("countdown").innerHTML = "Happy Valentine's Day! 💕";
+                }
+            }, 1000);
+        }
+        countdown();
+    </script>
+</body>
+</html>
